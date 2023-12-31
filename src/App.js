@@ -107,7 +107,7 @@ const App = () => {
           transform: "translateX(-50%)",
         }}
       >
-        sandipan
+        s*
       </p>
     </div>
   );
