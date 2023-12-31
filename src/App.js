@@ -1,16 +1,12 @@
 import React, { useState, useEffect } from "react";
+import useSound from 'use-sound';
 import "./App.css";
-import Audio1 from "./File/Audio1.mp3";
-import Audio2 from "./File/Audio2.mp3";
+import Audio2 from './File/Audio2.mp3'
 
 const App = () => {
-  const [fireworks, setFireworks] = useState(false);
   const [name, setName] = useState("");
   const [showWish, setShowWish] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const [ms, setMs] = useState(false);
-  const [audio1, setAudio1] = useState(new Audio(Audio1));
-  const [audio2, setAudio2] = useState(new Audio(Audio2));
   const [showCountdown, setShowCountdown] = useState(true);
   const [countdown, setCountdown] = useState({
     days: 0,
@@ -18,9 +14,9 @@ const App = () => {
     minutes: 0,
     seconds: 0,
   });
+  const [playSound] = useSound(Audio2);
 
   useEffect(() => {
-    setFireworks(true);
 
     const targetDate = new Date("January 1, 2024 00:00:00").getTime();
 
@@ -47,43 +43,25 @@ const App = () => {
 
     updateCountdown(); // Initial call to set the initial countdown
 
-    const countdownInterval = setInterval(updateCountdown, 1000);
+    const countdownInterval = setInterval(updateCountdown, 60*60*1000);
 
     return () => {
       clearInterval(countdownInterval);
-      setFireworks(false);
     };
   }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+  
     if (name.trim() !== "") {
       const newName = name.toUpperCase();
       setName(newName);
       setShowWish(true);
       setSubmitted(true);
-
-      // Pause Audio1 and play Audio2
-      playMusic(audio1, false);
-      playMusic(audio2, true);
+      playSound();
     }
   };
-
-  const playMusic = (audio, play) => {
-    if (play) {
-      audio.play();
-    } else {
-      audio.pause();
-      audio.currentTime = 0;
-    }
-  };
-
-  const StartFirstAudio = () => {
-    if (ms) return;
-    setMs(true);
-    playMusic(audio1, true);
-  };
+  
 
   return (
     <div className={`container ${submitted ? "submitted" : ""}`}>
@@ -110,7 +88,6 @@ const App = () => {
             value={name}
             onChange={(e) => {
               setName(e.target.value);
-              StartFirstAudio();
             }}
             className="name-input"
             disabled={submitted}
