@@ -43,7 +43,7 @@ const App = () => {
 
     updateCountdown(); // Initial call to set the initial countdown
 
-    const countdownInterval = setInterval(updateCountdown, 60*60*1000);
+    const countdownInterval = setInterval(updateCountdown, 1000);
 
     return () => {
       clearInterval(countdownInterval);
