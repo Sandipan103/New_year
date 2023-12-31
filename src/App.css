@@ -1,0 +1,92 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: #000;
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+}
+
+.container {
+  background-image: url("https://media.giphy.com/media/26tOZ42Mg6pbTUPHW/giphy.gif");
+  background-size: cover;
+  background-position: center;
+  height: 100vh; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  overflow: hidden;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.name-input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.submit-button {
+  background-color: #4caf50;
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  display: block; 
+  margin: 20px auto; 
+}
+
+
+@media (max-width: 600px) {
+  .name-input {
+    font-size: 0.8rem;
+  }
+
+  .submit-button {
+    font-size: 1rem;
+  }
+}
+
+.container.submitted {
+  animation: shake 0.5s;
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25%, 75% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+}
+
+
+.countdown,
+.clock {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.countdown h2,
+.clock h2 {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+
+h1 {
+  font-size: 2.5rem;
+  margin-top: 20px;
+}
